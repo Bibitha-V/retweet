@@ -1,3 +1,4 @@
+    
 const puppeteer = require('puppeteer');
 async function tweet(){
     
@@ -31,47 +32,43 @@ async function tweet(){
         await page.waitForSelector(submitButton)
         await page.click(submitButton)
         await navigationPromise
-
-        //go to status id
-        var status_id ='https://twitter.com/BessySebastin/status/1164466680489078784'
-        await page.goto(status_id)
-        const comment ="div.css-1dbjc4n.r-sdzlij.r-1p0dtai.r-xoduu5.r-1d2f490.r-xf4iuw.r-u8s1d.r-zchlnj.r-ipm5af.r-o7ynqc.r-6416eg"
-        await page.waitForSelector(comment)
-        await page.click(comment)
-
-        const add_comment ='div.notranslate.public-DraftEditor-content'
-        await page.waitForSelector(add_comment)
-        await page.click(add_comment)
-        await page.type(add_comment,'koii')
-        
-        const status = 'div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0'
-        await page.click(status);
         await page.waitFor(1000 * 12)
+
         
+         //go to status id
+         var status_id ='https://twitter.com/BessySebastin/status/1164465178525569024'
+         await page.goto(status_id)
+         const comment ="div.css-1dbjc4n.r-sdzlij.r-1p0dtai.r-xoduu5.r-1d2f490.r-xf4iuw.r-u8s1d.r-zchlnj.r-ipm5af.r-o7ynqc.r-6416eg"
+         await page.waitForSelector(comment)
+         await page.click(comment)
+ 
+         const add_comment ='div.notranslate.public-DraftEditor-content'
+         await page.waitForSelector(add_comment)
+         await page.click(add_comment)
+         await page.type(add_comment,'loii')
+         
+         const status = 'div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0'
+         await page.click(status);
+         await page.waitFor(1000 * 12)
 
-
-        //For clicking tweetbox
-       
-        // await page.waitFor(3000)
-        // const tweetButton ="div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0"
-        // await page.waitForSelector(tweetButton)
-        // await page.click(tweetButton)
-        // await page.waitForSelector("div.DraftEditor-editorContainer")
-
-        // const wait ="div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr"
-        // await page.waitForSelector(wait)
-        // await page.click(wait)
-        // await page.type(wait,'will');
-
-        // const status = 'div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0'
-        // await page.click(status);
-        // await page.waitFor(1000 * 12)
-       
-        //for retweeting 
-        const reTweet = 'div.css-1dbjc4n.r-sdzlij.r-1p0dtai.r-xoduu5.r-1d2f490.r-xf4iuw.r-u8s1d.r-zchlnj.r-ipm5af.r-o7ynqc.r-6416eg'
+   
+            
+       // for retweet or favourite 
+        const reTweet = 'div[data-testid="retweet"]'
+        await page.waitForSelector(reTweet);
         await page.click(reTweet);
-        await page.waitFor(1000 * 12)
+        const confirmRetweet ='div[data-testid="retweetConfirm"]'
+        await page.waitForSelector(confirmRetweet);
+        await page.click(confirmRetweet);
+        await page.waitFor(20000)
+        
        
+        
+
+       // for like or favourite 
+        const likeButton = 'div[data-testid="like"]'
+        await page.waitForSelector(likeButton);
+        await page.click(likeButton);
          
 
         // //For getting status_Id
